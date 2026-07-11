@@ -15,3 +15,7 @@ Full_Polys/FULL-POLY/FULL_POLY.pdf
 *.mtc
 *.mtc1
 *.synctex(busy)
+*.ind
+*.fls
+*.ilg
+*.fdb_latexmk
