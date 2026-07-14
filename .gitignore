@@ -19,3 +19,5 @@ Full_Polys/FULL-POLY/FULL_POLY.pdf
 *.fls
 *.ilg
 *.fdb_latexmk
+*.lot
+*.lof

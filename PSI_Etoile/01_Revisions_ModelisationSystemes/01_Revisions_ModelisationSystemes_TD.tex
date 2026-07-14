@@ -15,13 +15,12 @@
 \newcommand{\repStyle}{\repRel/Style}
 \input{\repRel/Style/macros_SII_v2}
 \input{\repRel/Style/environment_v2}
-\usepackage{\repStyle/UPSTI_pedagogique}
 
 
 % Choose the language
-
+\usepackage[english,french]{babel}
 \frenchsetup{StandardItemLabels=true}
-
+\usepackage{csquotes}
 
 % Load packages for testing
 %\usepackage{blindtext}
@@ -44,6 +43,10 @@
 
 
 \usetikzlibrary{decorations.text,backgrounds,shadings}
+
+% Ensure modern pgfplots behavior
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 \begin{document}
 
