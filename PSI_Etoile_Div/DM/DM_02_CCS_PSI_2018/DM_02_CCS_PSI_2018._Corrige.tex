@@ -1,3 +1,4 @@
+
 % Load the kaobook class
 \documentclass[
 	fontsize=10pt, % Base font size
@@ -6,10 +7,9 @@
 %%	secnumdepth=1, % How deep to number headings. Defaults to 1 (sections)
 ]{kaobook}
 
-\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur -- PSI$\star$}
+\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur -- PSI $\star$}
 \newcommand{\auteur}{Xavier Pessoles}
 \newcommand{\repRel}{../../../..}
-\newcommand{\repAct}{\repRel/PSI_ExercicesCompetences/}
 
 \input{\repRel/Style/packages_v2}
 \newcommand{\repStyle}{\repRel/Style}
@@ -18,7 +18,8 @@
 \usepackage{\repStyle/UPSTI_pedagogique}
 
 
-\usepackage[english,french]{babel} % Load characters and hyphenation
+% Choose the language
+\usepackage[english,french]{babel}
 \frenchsetup{StandardItemLabels=true}
 
 
@@ -38,27 +39,22 @@
 \makeindex[columns=3, title=Alphabetical Index, intoc] % Make LaTeX produce the files required to compile the index
 
 
-
 \begin{document}
 
 %%----------------------------------------------------------------------------------------
 %%	BOOK INFORMATION
 %%----------------------------------------------------------------------------------------
+
+\titlehead{Document Template}
+\title[SII en PSI* - Xavier Pessoles]{SII en PSI* - Xavier Pessoles}
+\author[XP]{Xavier Pessoles}
+\date{\today}
+%\publishers{An Awesome Publisher}
+
+%----------------------------------------------------------------------------------------
 %
-%%\titlehead{Document Template}
-%\title[SII en PSI*]{SII en PSI* -- Exercices d'application}
-%\author[XP]{Xavier Pessoles}
-%\date{\today}
-%%\publishers{An Awesome Publisher}
-%
-%%----------------------------------------------------------------------------------------
-%%
-%\frontmatter % Denotes the start of the pre-document content, uses roman numerals
-%\maketitle
-%
-%\begingroup % Local scope for the following commands
-%\tableofcontents
-%\endgroup
+\frontmatter % Denotes the start of the pre-document content, uses roman numerals
+
 
 %%----------------------------------------------------------------------------------------
 %%	MAIN BODY
@@ -75,40 +71,35 @@
 \pagestyle{xp.scrheadings}
 
 
+
 %%%%%
-\newcommand{\repExo}{Application_01_ROV}
-\newcommand{\nomExo}{Application_01_ROV}
-%\newcounter{cptApplication}[chapter]
-%\newcounter{cptTD}[chapter]
+\newcommand{\repExo}{}
+\newcommand{\nomExo}{}
 \AtBeginEnvironment{corrige}{\small}
 
 \livrettrue % Livrettrue :  eleve sans les corrections
-\collefalse
+\collefalse\colletrue
 \normaltrue
+\proftrue
 %%%%%
-\setcounter{cptApplication}{1}
-\setcounter{cptTD}{1}
+
 \newcommand{\exer}{\subsection*}
-\newcommand{\td}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{DM 2 \\ 
+Reprofilage des roues de train -- 
+\ifprof Corrigé \else Sujet \fi}
+\addcontentsline{toc}{section}{TD \arabic{cptTD} :
+Machine de rééducation SysReeduc -- 
+\ifprof Corrigé \else Sujet \fi}
 
 
-\newcounter{decsec}
-\setcounter{decsec}{221} % 
+\renewcommand{\repExo}{\repRel/Sujets_Concours/2018/CCS_PSI_Tour/}
+\renewcommand{\nomExo}{CCS_PSI_Tour_03_dm}
 
-% Macro pour les sections décroissantes
-\renewcommand{\exer}[1]{
-    \stepcounter{decsec}
-    \addtocounter{decsec}{-2} % Décrémente le compteur de 1
-    \section*{Exercice \arabic{decsec} -- #1}
-    \addtocounter{subparagraph}{-1} % Empêche l'incrémentation du compteur de section normal
-}
-
-\setchapterimage{Fond_DDS.png}
-\chapter*{Les Petits Devoirs du Soir -- DDS}
+\graphicspath{{\repRel/Style/png/}{\repExo/images/}}
+\input{\repExo/\nomExo}
 
 
-\input{all_tex}
-%\proftrue
-%\setcounter{chapter}{0}
-%\input{all_tex}
 \end{document}
+
