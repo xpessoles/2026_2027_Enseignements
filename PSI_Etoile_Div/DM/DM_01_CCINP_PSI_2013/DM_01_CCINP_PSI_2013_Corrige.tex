@@ -81,29 +81,17 @@
 \collefalse\colletrue
 \normaltrue
 %%%%%
+\proftrue
 
 \newcommand{\exer}{\subsection*}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter*{DM 2 \\ 
-Reprofilage des roues de train -- 
-\ifprof Corrigé \else Sujet \fi}
-\addcontentsline{toc}{section}{TD \arabic{cptTD} :
-Machine de rééducation SysReeduc -- 
-\ifprof Corrigé \else Sujet \fi}
+\renewcommand{\repExo}{\repRel/PSI_Cy_03_ConceptionCommande/Chapitre_01_Correction//}
+\renewcommand{\nomExo}{Cy_03_01_TD_PI_03_SysReeduc}
 
-
-\renewcommand{\repExo}{\repRel/Sujets_Concours/2018/CCS_PSI_Tour/}
-\renewcommand{\nomExo}{CCS_PSI_Tour_03_dm}
-
-
-\section*{Pour le 14 septembre 2026}
-
-\graphicspath{{\repRel/Style/png/}{\repExo/images/}}
-\input{\repExo/\nomExo}
-
-
-
+\graphicspath{{\repRel/Style/png/}{\repExo/\nomExo/images/}}
+\input{\repExo/\nomExo/\nomExo_dm.tex}
 
 
 \end{document}
