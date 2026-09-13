@@ -1,0 +1,204 @@
+
+% Load the kaobook class
+\documentclass[
+	fontsize=10pt, % Base font size
+	twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	%open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
+%%	secnumdepth=1, % How deep to number headings. Defaults to 1 (sections)
+]{kaobook}
+
+\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur -- PSI $\star$}
+\newcommand{\auteur}{Xavier Pessoles}
+\newcommand{\repRel}{../../../..}
+
+\input{\repRel/Style/packages_v2}
+\newcommand{\repStyle}{\repRel/Style}
+\input{\repRel/Style/macros_SII_v2}
+\input{\repRel/Style/environment_v2}
+\usepackage{\repStyle/UPSTI_pedagogique}
+
+
+% Choose the language
+\usepackage[english,french]{babel}
+\frenchsetup{StandardItemLabels=true}
+
+
+
+% Load the bibliography package
+\usepackage{kaobiblio}
+%\addbibresource{Cy_01_ModelisationSystemes.bib} % Bibliography file
+
+% Load mathematical packages for theorems and related environments
+\usepackage{kaotheorems}
+
+% Load the package for hyperreferences
+\usepackage{kaorefs}
+
+\graphicspath{{images/}{./}} % Paths where images are looked for
+
+\makeindex[columns=3, title=Alphabetical Index, intoc] % Make LaTeX produce the files required to compile the index
+
+
+\begin{document}
+
+%%----------------------------------------------------------------------------------------
+%%	BOOK INFORMATION
+%%----------------------------------------------------------------------------------------
+
+\titlehead{Document Template}
+\title[SII en PSI* - Xavier Pessoles]{SII en PSI* - Xavier Pessoles}
+\author[XP]{Xavier Pessoles}
+\date{\today}
+%\publishers{An Awesome Publisher}
+
+%----------------------------------------------------------------------------------------
+%
+\frontmatter % Denotes the start of the pre-document content, uses roman numerals
+
+
+%%----------------------------------------------------------------------------------------
+%%	MAIN BODY
+%%----------------------------------------------------------------------------------------
+%
+\mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic 
+
+\setchapterstyle{kao}
+
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\graphicspath{{\repStyle/png}}
+
+\pagestyle{xp.scrheadings}
+
+
+
+%%%%%
+\newcommand{\repExo}{}
+\newcommand{\nomExo}{}
+\AtBeginEnvironment{corrige}{\small}
+
+\livrettrue % Livrettrue :  eleve sans les corrections
+\collefalse\colletrue
+\normaltrue
+%%%%%
+
+\newcommand{\exer}{\subsection*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\repExo}{\repRel/PSI_Cy_03_ConceptionCommande/Chapitre_01_Correction//}
+\renewcommand{\nomExo}{Cy_03_01_TD_PI_03_SysReeduc}
+
+\graphicspath{{\repRel/Style/png/}{\repExo/\nomExo/images/}}
+
+\chapter*{Les interros qui ne comptent pas 01--A}
+
+\question{Tracer le diagramme de Bode de la fonction de transfert $F(p)=\dfrac{10}{p\left( 1+0,3 p\right)}$.}
+\ifprof
+\begin{center}
+\begin{tikzpicture}[
+   semilog lines/.style={thin,black!60},
+semilog lines 2/.style={thin,black!30},
+    xscale=12/5
+]
+
+\begin{scope}[yscale=6/300]
+\OrdBode{20}
+\semilog{-2}{2}{-60}{80}
+\BodeGraph[asymp lines,cyan,samples=100] {-2:2}{\POAmpAsymp{10}{0.3}+ \IntAmp{1}}
+\BodeGraph{-2:2} {\POAmp{10}{0.3}+ \IntAmp{1}}
+\end{scope}
+
+\begin{scope}[yshift=-1.9cm,yscale=1/70]
+\UniteDegre
+\OrdBode{45}
+\semilog{-2}{2}{-180}{0}
+\BodeGraph[asymp lines, cyan, samples=100, const plot]{-2:2}{\POArgAsymp{10}{0.3} + \IntArg{1}}
+\BodeGraph{-2:2}{\POArg{10}{0.3}+ \IntArg{1}}
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\else
+\begin{center}
+\begin{tikzpicture}[
+   semilog lines/.style={thin,black!60},
+semilog lines 2/.style={thin,black!30},
+    xscale=12/5
+]
+
+\begin{scope}[yscale=6/300]
+\OrdBode{20}
+\semilog{-2}{2}{-60}{80}
+%\BodeGraph[asymp lines,cyan,samples=100] {-2:2}{\POAmpAsymp{10}{0.3}+ \IntAmp{1}}
+%\BodeGraph{-2:2} {\POAmp{10}{0.3}+ \IntAmp{1}}
+\end{scope}
+
+\begin{scope}[yshift=-1.9cm,yscale=1/70]
+\UniteDegre
+\OrdBode{45}
+\semilog{-2}{2}{-180}{0}
+%\BodeGraph[asymp lines, cyan, samples=100, const plot]{-2:2}{\POArgAsymp{10}{0.3} + \IntArg{1}}
+%\BodeGraph{-2:2}{\POArg{10}{0.3}+ \IntArg{1}}
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\fi
+
+
+
+\newpage
+\chapter*{Les interros qui ne comptent pas 01--B}
+
+\question{Tracer le diagramme de Bode de la fonction de transfert $F(p)=\dfrac{0,1}{p\left( 1+3 p\right)}$.}
+\ifprof
+\begin{center}
+\begin{tikzpicture}[
+   semilog lines/.style={thin,black!60},
+semilog lines 2/.style={thin,black!30},
+    xscale=12/5
+]
+
+\begin{scope}[yscale=6/300]
+\OrdBode{20}
+\semilog{-2}{2}{-120}{40}
+\BodeGraph[asymp lines,cyan,samples=100] {-2:2}{\POAmpAsymp{0.1}{3}+ \IntAmp{1}}
+\BodeGraph{-2:2} {\POAmp{0.1}{3}+ \IntAmp{1}}
+\end{scope}
+
+\begin{scope}[yshift=-2.8cm,yscale=1/70]
+\UniteDegre
+\OrdBode{45}
+\semilog{-2}{2}{-180}{0}
+\BodeGraph[asymp lines, cyan, samples=100, const plot]{-2:2}{\POArgAsymp{0.1}{3} + \IntArg{1}}
+\BodeGraph{-2:2}{\POArg{0.1}{3}+ \IntArg{1}}
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\else
+\begin{center}
+\begin{tikzpicture}[
+   semilog lines/.style={thin,black!60},
+semilog lines 2/.style={thin,black!30},
+    xscale=12/5
+]
+
+\begin{scope}[yscale=6/300]
+\OrdBode{20}
+\semilog{-2}{2}{-120}{40}
+%\BodeGraph[asymp lines,cyan,samples=100] {-2:2}{\POAmpAsymp{0.1}{3}+ \IntAmp{1}}
+%\BodeGraph{-2:2} {\POAmp{0.1}{3}+ \IntAmp{1}}
+\end{scope}
+
+\begin{scope}[yshift=-2.8cm,yscale=1/70]
+\UniteDegre
+\OrdBode{45}
+\semilog{-2}{2}{-180}{0}
+%\BodeGraph[asymp lines, cyan, samples=100, const plot]{-2:2}{\POArgAsymp{0.1}{3} + \IntArg{1}}
+%\BodeGraph{-2:2}{\POArg{0.1}{3}+ \IntArg{1}}
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\fi
+
+\end{document}
+
