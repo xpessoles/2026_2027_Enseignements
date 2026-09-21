@@ -1,3 +1,4 @@
+
 % Load the kaobook class
 \documentclass[
 	fontsize=10pt, % Base font size
@@ -6,10 +7,9 @@
 %%	secnumdepth=1, % How deep to number headings. Defaults to 1 (sections)
 ]{kaobook}
 
-
-\newcommand{\repRel}{../../../..}
-\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur -- PSI$\star$}
+\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur -- PSI $\star$}
 \newcommand{\auteur}{Xavier Pessoles}
+\newcommand{\repRel}{../../../..}
 
 \input{\repRel/Style/packages_v2}
 \newcommand{\repStyle}{\repRel/Style}
@@ -19,13 +19,14 @@
 
 
 % Choose the language
-\usepackage[english,french]{babel} % Load characters and hyphenation
+\usepackage[english,french]{babel}
 \frenchsetup{StandardItemLabels=true}
+
 
 
 % Load the bibliography package
 \usepackage{kaobiblio}
-\addbibresource{Cy_01_ModelisationSystemes.bib} % Bibliography file
+%\addbibresource{Cy_01_ModelisationSystemes.bib} % Bibliography file
 
 % Load mathematical packages for theorems and related environments
 \usepackage{kaotheorems}
@@ -45,7 +46,7 @@
 %%----------------------------------------------------------------------------------------
 
 \titlehead{Document Template}
-\title[SII en PSI*]{SII en PSI*}
+\title[SII en PSI* - Xavier Pessoles]{SII en PSI* - Xavier Pessoles}
 \author[XP]{Xavier Pessoles}
 \date{\today}
 %\publishers{An Awesome Publisher}
@@ -53,24 +54,13 @@
 %----------------------------------------------------------------------------------------
 %
 \frontmatter % Denotes the start of the pre-document content, uses roman numerals
-%
 
-%%----------------------------------------------------------------------------------------
-%%	TABLE OF CONTENTS & LIST OF FIGURES/TABLES
-%%----------------------------------------------------------------------------------------
-%
-%\begingroup % Local scope for the following commands
-%%
-%\tableofcontents % Output the table of contents
-%%
-%\endgroup
 
 %%----------------------------------------------------------------------------------------
 %%	MAIN BODY
 %%----------------------------------------------------------------------------------------
 %
-\mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic numbers
-
+\mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic 
 
 \setchapterstyle{kao}
 
@@ -79,31 +69,42 @@
 \graphicspath{{\repStyle/png}}
 
 \pagestyle{xp.scrheadings}
-%\pagestyle{xp.test}
-
-
-%\input{\repStyle/Cycle_01_Entete}
 
 
 
 %%%%%
-\newcommand{\repExo}{Application_01_ROV}
-\newcommand{\nomExo}{Application_01_ROV}
-%\newcounter{cptApplication}[chapter]
-%\newcounter{cptTD}[chapter]
+\newcommand{\repExo}{}
+\newcommand{\nomExo}{}
 \AtBeginEnvironment{corrige}{\small}
 
-\livretfalse% Livrettrue :  eleve sans les corrections
-\colletrue
+\livretfalse % Livrettrue :  eleve sans les corrections
+\collefalse\colletrue
+\normaltrue
 %%%%%
 
+\newcommand{\exer}{\subsection*}
 
-\setcounter{chapter}{1}
-%\input{01_multiphysique}
-%\input{02_modelisation_slci}
-\input{03_performances_slci}
-%
-%\input{03_pfd_1d}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{DM 4 \\ 
+Injection plastique -- 
+\ifprof Corrigé \else Sujet \fi}
+\addcontentsline{toc}{section}{TD \arabic{cptTD} :
+Injection plastique -- 
+\ifprof Corrigé \else Sujet \fi}
+
+
+\renewcommand{\repExo}{\repRel/Sujets_Concours/2026/ATS/}
+\renewcommand{\nomExo}{2026_ats_p3}
+
+
+\section*{Pour le 28 septembre 2026}
+
+\graphicspath{{\repRel/Style/png/}{\repExo/images/}}
+\input{\repExo/\nomExo}
+
+
+
 
 
 \end{document}
+
