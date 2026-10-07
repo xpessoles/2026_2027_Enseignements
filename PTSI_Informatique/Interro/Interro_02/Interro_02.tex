@@ -1,0 +1,167 @@
+% Load the kaobook class
+\documentclass[
+	fontsize=10pt, % Base font size
+	twoside=false, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	%open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
+%%	secnumdepth=1, % How deep to number headings. Defaults to 1 (sections)
+]{kaobook}
+
+\newcommand{\discipline}{Informatique -- PTSI}
+\newcommand{\auteur}{Xavier Pessoles}
+\newcommand{\repRel}{../../../..}
+
+\input{\repRel/Style/packages_v2}
+\newcommand{\repStyle}{\repRel/Style}
+\input{\repRel/Style/macros_SII_v2}
+\input{\repRel/Style/environment_v2}
+\usepackage{\repStyle/UPSTI_pedagogique}
+
+
+% Choose the language
+\usepackage[english,french]{babel}
+\frenchsetup{StandardItemLabels=true}
+
+
+
+% Load the bibliography package
+\usepackage{kaobiblio}
+%\addbibresource{Cy_01_ModelisationSystemes.bib} % Bibliography file
+
+% Load mathematical packages for theorems and related environments
+\usepackage{kaotheorems}
+
+% Load the package for hyperreferences
+\usepackage{kaorefs}
+
+\graphicspath{{images/}{./}} % Paths where images are looked for
+
+\makeindex[columns=3, title=Alphabetical Index, intoc] % Make LaTeX produce the files required to compile the index
+
+\newcommand{\zonecarree}[2]{%
+\begin{center}
+\begin{tikzpicture}
+  \draw[step=5mm, lightgray, very thin] (0,0) grid (#1,#2);
+  \draw[thick] (0,0) rectangle (#1,#2);
+\end{tikzpicture}
+\end{center}
+}
+
+\begin{document}
+
+%%----------------------------------------------------------------------------------------
+%%	BOOK INFORMATION
+%%----------------------------------------------------------------------------------------
+
+\titlehead{Document Template}
+\title[SII en PSI* - Xavier Pessoles]{SII en PSI* - Xavier Pessoles}
+\author[XP]{Xavier Pessoles}
+\date{\today}
+%\publishers{An Awesome Publisher}
+
+%----------------------------------------------------------------------------------------
+%
+\frontmatter % Denotes the start of the pre-document content, uses roman numerals
+
+
+%%----------------------------------------------------------------------------------------
+%%	MAIN BODY
+%%----------------------------------------------------------------------------------------
+%
+\mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic 
+
+\setchapterstyle{kao}
+
+\setcounter{margintocdepth}{\sectiontocdepth}
+%\marginlayout % pour etre en 2/3 1/3
+%\fullwidthlayout
+
+\graphicspath{{\repStyle/png}}
+
+\pagestyle{xp.scrheadings}
+
+
+
+%%%%%
+\newcommand{\repExo}{}
+\newcommand{\nomExo}{}
+\AtBeginEnvironment{corrige}{\small}
+
+\livrettrue % Livrettrue :  eleve sans les corrections
+\collefalse\colletrue
+\normaltrue
+%%%%%
+
+\newcommand{\exer}{\subsection*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\repExo}{\repRel/PSI_Cy_03_ConceptionCommande/Chapitre_01_Correction//}
+\renewcommand{\nomExo}{Cy_03_01_TD_PI_03_SysReeduc}
+
+\graphicspath{{\repRel/Style/png/}{\repExo/\nomExo/images/}}
+
+\chapter*{Les interros qui ne comptent pas  -- 02}
+
+\question{Ecrire la fonction \lstinline{moyenne(L:[int]) -> int} qui renvoie la moyenne des éléments de la liste \lstinline{L}.}
+\ifprof
+\else
+\zonecarree{17}{3.5} 
+\fi
+
+
+\question{Ecrire la fonction \lstinline{maxi(L:[int]) -> int} qui renvoie la valeur du maximum de la liste \lstinline{L}.}
+
+\ifprof
+\else
+\zonecarree{17}{3} 
+\fi
+
+
+\question{Ecrire la fonction \lstinline{indice_max(L:[int]) -> int} qui renvoie l'indice de la valeur du maximum de la liste \lstinline{L}.}
+
+\ifprof
+\else
+\zonecarree{17}{3} 
+\fi
+
+\question{Ecrire la fonction \lstinline{mini(L:[int]) -> int} qui renvoie la valeur du minimum de la liste \lstinline{L}.}
+
+\ifprof
+\else
+\zonecarree{17}{3} 
+\fi
+
+
+\question{Ecrire la fonction \lstinline{indice_min(L:[int]) -> int} qui renvoie l'indice de la valeur du minimum de la liste \lstinline{L}.}
+
+\ifprof
+\else
+\zonecarree{17}{3} 
+\fi
+
+\question{Ecrire la fonction \lstinline{pairs(L:[int]) -> [int]} qui renvoie la liste des éléments pairs de la liste \lstinline{L}.}
+
+\ifprof
+\else
+\zonecarree{17}{3} 
+\fi
+
+\question{Ecrire la fonction \lstinline{del_max(L:[int]) -> [int]} qui permet de renvoyer une liste identique à \lstinline{L} sans son maximum.}
+
+\ifprof
+\else
+\zonecarree{17}{3} 
+\fi
+
+\question{Ecrire la fonction \lstinline{compte(L:[int], x:int) -> int} qui permet de compter le nombre d'occurences de \lstinline{x} dans la liste \lstinline{L}.}
+
+\ifprof
+\else
+\zonecarree{17}{3} 
+\fi
+
+
+
+\end{document}
+
