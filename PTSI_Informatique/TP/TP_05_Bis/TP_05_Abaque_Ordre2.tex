@@ -1,0 +1,209 @@
+% Load the kaobook class
+\documentclass[
+	fontsize=10pt, % Base font size
+	twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	%open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
+%%	secnumdepth=1, % How deep to number headings. Defaults to 1 (sections)
+]{kaobook}
+
+\newcommand{\discipline}{Informatique -- PTSI}
+\newcommand{\auteur}{I. Cotta, X. Pessoles, V. Reydellet}
+\newcommand{\repRel}{../../../..}
+
+\input{\repRel/Style/packages_v2}
+\newcommand{\repStyle}{\repRel/Style}
+\input{\repRel/Style/macros_SII_v2}
+\input{\repRel/Style/environment_v2}
+\usepackage{\repStyle/UPSTI_pedagogique}
+
+
+\usepackage[english,french]{babel}
+\frenchsetup{StandardItemLabels=true}
+
+
+% Load packages for testing
+%\usepackage{blindtext}
+%\usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
+%\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
+
+% Load the bibliography package
+%\usepackage{kaobiblio}
+%\addbibresource{Cy_01_ModelisationSystemes.bib} % Bibliography file
+
+% Load mathematical packages for theorems and related environments
+\usepackage{kaotheorems}
+
+% Load the package for hyperreferences
+\usepackage{kaorefs}
+%\usepackage{lmodern}
+
+\graphicspath{{images/}{./}} % Paths where images are looked for
+
+\makeindex[columns=3, title=Alphabetical Index, intoc] % Make LaTeX produce the files required to compile the index
+
+
+\begin{document}
+
+%%----------------------------------------------------------------------------------------
+%%	BOOK INFORMATION
+%%----------------------------------------------------------------------------------------
+
+\titlehead{Xavier Pessoles - Informatique en PTSI}
+\title[Xavier Pessoles - Informatique en PTSI]{Xavier Pessoles - Informatique en PTSI}
+\author[XP]{Xavier Pessoles}
+\date{\today}
+
+
+\begingroup % Local scope for the following commands
+\setstretch{1} % Uncomment to modify line spacing in the ToC
+%\tableofcontents % Output the table of contents
+\endgroup
+
+%%----------------------------------------------------------------------------------------
+%%	MAIN BODY
+%%----------------------------------------------------------------------------------------
+%
+\mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic numbers
+%\setchapterstyle{kao} % Choose the default chapter heading style
+%
+%\chapter{First Chapter}
+%
+%\blindtext
+%
+%\pagelayout{wide} % No margins
+%\addpart{Title of the Part}
+%\pagelayout{margin} % Restore margins
+%
+%\chapter{Second Chapter}
+
+\setchapterstyle{kao}
+
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\graphicspath{{\repStyle/png}}
+
+\pagestyle{xp.scrheadings}
+%\pagestyle{xp.test}
+
+
+%\input{\repStyle/Cycle_01_Entete}
+
+
+
+%%%%%
+\newcommand{\repExo}{Application_01_ROV}
+\newcommand{\nomExo}{Application_01_ROV}
+%\newcounter{cptApplication}[chapter]
+%\newcounter{cptTD}[chapter]
+\AtBeginEnvironment{corrige}{\small}
+
+\livrettrue % Livrettrue :  eleve sans les corrections
+\livrettrue
+\colletrue
+%%%%%
+
+
+% ========= TD ========= 
+\renewcommand{\repExo}{\repRel/Informatique/Exercices/S1_03_UtilisationModules/}
+\renewcommand{\nomExo}{02_MarcheAutoEvitante}
+\graphicspath{{\repStyle/png}{\repExo\nomExo/images}}
+
+
+\section*{Exercice indépendant}
+On souhaite analyser l'évolution de la température au cours
+d'une période donnée à l'aide d'une moyenne glissante.
+
+Voici les températures relevées : \lstinline{temperatures = [18, 20, 19, 22, 24, 23, 21, 25, 26, 24]}.
+
+
+On souhaite calculer une moyenne glissante sur une fenêtre de 3 jours.
+
+
+Une moyenne glissante consiste à calculer la moyenne d'un ensemble de valeurs consécutives, puis à décaler la fenêtre d'un élément pour effectuer le calcul suivant.
+
+Par exemple, pour une fenêtre de taille 3 :
+\begin{itemize}
+    \item moyenne des jours 1 à 3 : 
+    \(
+    \frac{18+20+19}{3}=19
+    \);
+    \item moyenne des jours 2 à 4 :
+    \(
+    \frac{20+19+22}{3}=20{,}33
+    \).
+\end{itemize}
+
+\subsubsection*{Travail demandé}
+
+Écrire une fonction Python appelée \texttt{moyenne\_glissante()} qui prend deux paramètres :
+\begin{itemize}
+    \item \texttt{data} : une liste de valeurs numériques ;
+    \item \texttt{window} : la taille de la fenêtre de calcul.
+\end{itemize}
+
+\subsubsection*{Résultat attendu}
+
+Pour le code suivant :
+
+\begin{lstlisting}[language=Python]
+temperatures = [18, 20, 19, 22, 24, 23, 21, 25, 26, 24]
+resultat = moyenne_glissante(temperatures, 3)
+print(resultat)
+\end{lstlisting}
+
+On doit obtenir :
+
+\begin{lstlisting}
+[19.0, 20.33, 21.67, 23.0, 22.67, 23.0, 24.0, 25.0]
+\end{lstlisting}
+
+%\section{Contraintes}
+%
+%\begin{itemize}
+%    \item Ne pas utiliser les bibliothèques NumPy ou Pandas.
+%    \item Utiliser uniquement les fonctionnalités natives de Python.
+%    \item Utiliser une boucle \texttt{for}.
+%    \item Utiliser le slicing pour extraire les fenêtres :
+%    \texttt{data[i:i+window]}.
+%\end{itemize}
+%
+%\section{Bonus : pour aller plus loin}
+%
+%\begin{enumerate}
+%    \item Ajouter une gestion des erreurs lorsque la taille de
+%    la fenêtre est nulle ou supérieure à la taille de la liste.
+%
+%    \item Tester la fonction avec différentes tailles de fenêtre
+%    (2, 3 et 5).
+%
+%    \item Optimiser le calcul en évitant de recalculer la somme
+%    complète à chaque itération : ajouter la nouvelle valeur
+%    et retirer l'ancienne.
+%\end{enumerate}
+%
+%\end{document}
+
+
+\proffalse
+\input{sujet} 
+\iflivret \else \proftrue
+\input{sujet}
+\fi
+% ===
+
+
+
+
+%
+%\proffalse
+%\input{\repExo\nomExo/\nomExo} 
+%\iflivret \else \proftrue
+%\input{\repExo\nomExo/\nomExo}
+%\fi
+%% ==========================
+
+
+
+
+
+\end{document}

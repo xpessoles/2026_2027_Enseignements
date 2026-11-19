@@ -1,15 +1,15 @@
+
 % Load the kaobook class
 \documentclass[
 	fontsize=10pt, % Base font size
-	twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	twoside=false, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
 	%open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
 %%	secnumdepth=1, % How deep to number headings. Defaults to 1 (sections)
 ]{kaobook}
 
-
-\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur -- PSI$\star$}
+\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur -- PSI $\star$}
 \newcommand{\auteur}{Xavier Pessoles}
-\newcommand{\repRel}{../../..}
+\newcommand{\repRel}{../../../..}
 
 \input{\repRel/Style/packages_v2}
 \newcommand{\repStyle}{\repRel/Style}
@@ -18,14 +18,15 @@
 \usepackage{\repStyle/UPSTI_pedagogique}
 
 
-
+% Choose the language
+\usepackage[english,french]{babel}
 \frenchsetup{StandardItemLabels=true}
 
 
 
 % Load the bibliography package
 \usepackage{kaobiblio}
-\addbibresource{Cy_01_ModelisationSystemes.bib} % Bibliography file
+%\addbibresource{Cy_01_ModelisationSystemes.bib} % Bibliography file
 
 % Load mathematical packages for theorems and related environments
 \usepackage{kaotheorems}
@@ -45,7 +46,7 @@
 %%----------------------------------------------------------------------------------------
 
 \titlehead{Document Template}
-\title[SII en PSI*]{SII en PSI*}
+\title[SII en PSI* - Xavier Pessoles]{SII en PSI* - Xavier Pessoles}
 \author[XP]{Xavier Pessoles}
 \date{\today}
 %\publishers{An Awesome Publisher}
@@ -53,59 +54,67 @@
 %----------------------------------------------------------------------------------------
 %
 \frontmatter % Denotes the start of the pre-document content, uses roman numerals
-%
 
-%%----------------------------------------------------------------------------------------
-%%	TABLE OF CONTENTS & LIST OF FIGURES/TABLES
-%%----------------------------------------------------------------------------------------
-%
-%\begingroup % Local scope for the following commands
-%\tableofcontents % Output the table of contents
-%\endgroup
 
 %%----------------------------------------------------------------------------------------
 %%	MAIN BODY
 %%----------------------------------------------------------------------------------------
 %
-\mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic numbers
-
+\mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic 
 
 \setchapterstyle{kao}
 
 \setcounter{margintocdepth}{\sectiontocdepth}
-\marginlayout
+%\marginlayout
 \graphicspath{{\repStyle/png}}
 
 \pagestyle{xp.scrheadings}
-%\pagestyle{xp.test}
-
-
-%\input{\repStyle/Cycle_01_Entete}
 
 
 
 %%%%%
-\newcommand{\repExo}{Application_01_ROV}
-\newcommand{\nomExo}{Application_01_ROV}
-%\newcounter{cptApplication}[chapter]
-%\newcounter{cptTD}[chapter]
+\newcommand{\repExo}{}
+\newcommand{\nomExo}{}
 \AtBeginEnvironment{corrige}{\small}
 
 \livrettrue % Livrettrue :  eleve sans les corrections
-\collefalse
-%\livretfalse
+
+\proffalse
+\collefalse\colletrue
+\normaltrue
 %%%%%
 
+\newcommand{\exer}{\subsection*}
 
-\setcounter{chapter}{5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{DM 9 \\ 
+%Statique et Cinématique -- 
+\ifprof Corrigé \else Sujet \fi}
+\addcontentsline{toc}{section}{TD \arabic{cptTD} :
+%Sujets divers -- 
+\ifprof Corrigé \else Sujet \fi}
 
-\colletrue
-\normaltrue
-\input{01_geometrie}
-%\input{02_dynamique}
-%\input{03_methodologie}
+
+\section*{Pour le 23 novembre 2026}
+
+%\renewcommand{\repExo}{\repRel/PSI_Cy_02_PredictionPerfomances/Chapitre_01_Stabilite/Cy_02_Ch_01_TD_01_Drone/}
+%\renewcommand{\nomExo}{Cy_02_Ch_01_DM_Drone.tex}
+
+
+\renewcommand{\repExo}{\repRel/PSI_ExercicesCompetences/DYN/DYN-04-TorseurDynamique/}
+% ========= TD ========= 
+\renewcommand{\nomExo}{07_RR3D_02}
+\graphicspath{{\repStyle/png}{\repExo\nomExo/images}}
+
+\proffalse
+\input{\repExo\nomExo/\nomExo} 
+\iflivret \else \proftrue
+\input{\repExo\nomExo/\nomExo}
+\fi
+% ==========================
 
 
 
 
 \end{document}
+
